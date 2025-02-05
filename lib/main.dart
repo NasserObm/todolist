@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,15 +9,20 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(
+  if (kIsWeb) {
+    await Firebase.initializeApp(
       options: const FirebaseOptions(
-    apiKey: "AIzaSyAJLTEVK-zfTGOwPRmYJ4ZCinDkgb3ZpVU",
-    authDomain: "todolist-a1ca9.firebaseapp.com",
-    projectId: "todolist-a1ca9",
-    storageBucket: "todolist-a1ca9.firebasestorage.app",
-    messagingSenderId: "74381718685",
-    appId: "1:74381718685:web:fe32ce96c51d254b059074",
-  ));
+        apiKey: "AIzaSyAJLTEVK-zfTGOwPRmYJ4ZCinDkgb3ZpVU",
+        authDomain: "todolist-a1ca9.firebaseapp.com",
+        projectId: "todolist-a1ca9",
+        storageBucket: "todolist-a1ca9.firebasestorage.app",
+        messagingSenderId: "74381718685",
+        appId: "1:74381718685:web:fe32ce96c51d254b059074",
+      ),
+    );
+  } else {
+    await Firebase.initializeApp();
+  }
 
   runApp(const MyApp());
 }
