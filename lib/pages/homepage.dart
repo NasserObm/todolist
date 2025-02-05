@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, duplicate_ignore
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -177,8 +177,33 @@ class HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ma Todo List"),
+        title: Text(
+          "Ma Todo-List",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 30.sp,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
+        leading: ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: IconButton(
+            icon: const Icon(Icons.list, color: Colors.black),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('ListTile cliqué !'),
+                  backgroundColor: Colors.blue,
+                ),
+              );
+            },
+          ),
+          title: const Text(
+            'Menu',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
